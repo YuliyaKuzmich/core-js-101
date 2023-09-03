@@ -229,11 +229,11 @@ function encodeToRot13(str) {
   const input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
   const output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   let result = '';
-  const splited = str.split('');
-  splited.forEach((element) => {
-    if (splited[element] === input[element]) {
-      const midRes = input.indexOf(splited[element]);
-      result += output[midRes];
+  str.split('').forEach((element) => {
+    if (input.includes(element)) {
+      result += output[input.indexOf(element)];
+    } else {
+      result += element;
     }
   });
   return result;
