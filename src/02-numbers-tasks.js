@@ -74,9 +74,10 @@ function getAverage(value1, value2) {
  *   (0,0) (1,0)    => 1
  *   (-5,0) (10,-10) => 18.027756377319946
  */
-function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getDistanceBetweenPoints(x1, y1, x2, y2) {
+  return Math.sqrt(((x2 - x1) ** 2) + ((y2 - y1) ** 2));
 }
+
 
 /**
  * Returns a root of linear equation a*x + b = 0 given by coefficients a and b.
@@ -90,8 +91,8 @@ function getDistanceBetweenPoints(/* x1, y1, x2, y2 */) {
  *   x + 8 = 0       => -8
  *   5*x = 0         => 0
  */
-function getLinearEquationRoot(/* a, b */) {
-  throw new Error('Not implemented');
+function getLinearEquationRoot(a, b) {
+  return -b / a;
 }
 
 
@@ -113,8 +114,11 @@ function getLinearEquationRoot(/* a, b */) {
  *   (0,1) (0,1)     => 0
  *   (0,1) (1,2)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const scalarPow = (x1 * x2) + (y1 * y2);
+  const moduleA = Math.sqrt((x1 * x1) + (y1 * y1));
+  const moduleB = Math.sqrt((x2 * x2) + (y2 * y2));
+  return Math.acos(scalarPow / (moduleA * moduleB));
 }
 
 /**
@@ -129,8 +133,9 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  const string = value.toString();
+  return string[string.length - 1];
 }
 
 
@@ -145,8 +150,8 @@ function getLastDigit(/* value */) {
  *     '37'     => 37
  * '-525.5'     => -525.5
  */
-function parseNumberFromString(/* value */) {
-  throw new Error('Not implemented');
+function parseNumberFromString(value) {
+  return Number(value);
 }
 
 /**
@@ -162,8 +167,8 @@ function parseNumberFromString(/* value */) {
  *   3,3,3   => 5.196152422706632
  *   1,2,3   => 3.741657386773941
  */
-function getParallelepipedDiagonal(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getParallelepipedDiagonal(a, b, c) {
+  return Math.sqrt((a ** 2) + (b ** 2) + (c ** 2));
 }
 
 
@@ -184,8 +189,11 @@ function getParallelepipedDiagonal(/* a, b, c */) {
  *   1678, 2  => 1700
  *   1678, 3  => 2000
  */
-function roundToPowerOfTen(/* num, pow */) {
-  throw new Error('Not implemented');
+function roundToPowerOfTen(num, pow) {
+  const midResult = num / (10 ** pow);
+  const midResult1 = num % (10 ** pow);
+  const midResult2 = midResult1.toString()[0];
+  return midResult2 < 5 ? (Math.floor(midResult) * (10 ** pow)) : Math.ceil(midResult) * 10 ** pow;
 }
 
 /**
@@ -205,8 +213,23 @@ function roundToPowerOfTen(/* num, pow */) {
  *   16 => false
  *   17 => true
  */
-function isPrime(/* n */) {
-  throw new Error('Not implemented');
+function isPrime(n) {
+  let result;
+  const string = n.toString();
+  if (n < 2) {
+    result = false;
+  } else if (n !== 2 && n % 2 === 0) {
+    result = false;
+  } else if (n !== 3 && n % 3 === 0) {
+    result = false;
+  } else if (n !== 7 && n % 7 === 0) {
+    result = false;
+  } else if (n !== 5 && string[string - 1] === 5) {
+    result = false;
+  } else {
+    result = true;
+  }
+  return result;
 }
 
 /**
@@ -224,8 +247,9 @@ function isPrime(/* n */) {
  *   toNumber(42, 0) => 42
  *   toNumber(new Number(42), 0) => 42
  */
-function toNumber(/* value, def */) {
-  throw new Error('Not implemented');
+function toNumber(value, def) {
+  const result = Number(value);
+  return Number.isNaN(result) ? def : result;
 }
 
 module.exports = {
