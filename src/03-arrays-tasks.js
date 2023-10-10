@@ -633,10 +633,10 @@ function getElementByIndexes(arr, indexes) {
  *
  */
 function swapHeadAndTail(arr) {
-  const middle = Math.floor(arr.length / 2);
-  const head = arr.slice(0, middle);
-  const tail = arr.slice(-middle);
-  return [...tail, ...head];
+  const head = arr.slice(0, Math.round((arr.length - 1) / 2));
+  const tail = arr.slice(Math.round(arr.length / 2), arr.length);
+  const center = arr.slice(Math.round((arr.length - 1) / 2), Math.round(arr.length / 2));
+  return [].concat(tail, center, head);
 }
 
 
